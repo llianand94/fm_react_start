@@ -1,21 +1,24 @@
 // React
 // ReactDOM
-//  статический компонент
 
 
-class Heading extends React.Component{
+class Counter extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {counter:0}
+  }
   render(){
-    // console.log(this); 
-    const {titleForHeading, children} = this.props;
-    return React.createElement('h1',{className:'heading', title:titleForHeading},...children);
+    const {counter} = this.state;
+    
+    return React.createElement(React.Fragment,{}, 
+      React.createElement('h1',{}, counter),
+      React.createElement('button',{}, '+'),
+      React.createElement('button',{}, '-'),
+    )
   }
 }
 
-
-const container  = document.getElementById('root');
-const reactElement2 = React.createElement(Heading, {titleForHeading:'qqweryt'});
-const reactElement = React.createElement(Heading, {titleForHeading:'title123'}, 'Elon Masl', reactElement2);
+const reactElement = React.createElement(Counter);
 
 
-
-ReactDOM.render(reactElement, container);
+ReactDOM.render(reactElement, document.getElementById('root'));
